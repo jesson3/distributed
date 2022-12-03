@@ -12,7 +12,7 @@ import (
 )
 
 func RegisterService(r Registeration) error {
-	serviceUpdateURL,err := url.Parse(r.ServiceUpdateURL)
+	serviceUpdateURL, err := url.Parse(r.ServiceUpdateURL)
 	if err != nil {
 		return err
 	}
@@ -38,8 +38,8 @@ func RegisterService(r Registeration) error {
 
 type serviceUpdateHandler struct{}
 
-func (suh serviceUpdateHandler) ServeHTTP(w http.ResponseWriter, r *http.Request){
-	if r.Method != http.MethodPost{
+func (suh serviceUpdateHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		return
 	}
