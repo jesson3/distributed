@@ -9,7 +9,7 @@ import (
 	"sync"
 )
 
-const ServerPort = ":9877"
+const ServerPort = ":9876"
 const ServicesURL = "http://localhost" + ServerPort + "/services"
 
 type registry struct {

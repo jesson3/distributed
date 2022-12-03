@@ -5,32 +5,27 @@ import (
 	"fmt"
 	stlog "log"
 
-	"github.com/jesson3/distributed/log"
+	"github.com/jesson3/distributed/grades"
 	"github.com/jesson3/distributed/registry"
 	"github.com/jesson3/distributed/service"
 )
 
 func main() {
-	log.Run("./distributed.log")
-	host, port := "localhost", "9877"
+	host, port := "localhost", "9878"
 	serviceAddress := fmt.Sprintf("http://%s:%s", host, port)
 
 	r := registry.Registeration{
-		ServiceName: registry.LogService,
+		ServiceName: registry.GradingService,
 		ServiceURL:  serviceAddress,
 	}
-	ctx, err := service.Start(
-		context.Background(),
+	ctx, err := service.Start(context.Background(),
 		host,
 		port,
 		r,
-		log.RegisterHandlers,
-	)
-
+		grades.RegisterHandlers)
 	if err != nil {
-		stlog.Fatalln(err)
+		stlog.Fatal(err)
 	}
-
 	<-ctx.Done()
-	fmt.Println("Shutting down log service.")
+	fmt.Println("Shutting down grading service")
 }
