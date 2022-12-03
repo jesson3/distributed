@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	log.Run(".distributed.log")
+	log.Run("./distributed.log")
 	host, port := "localhost", "9876"
 	ctx, err := service.Start(
 		context.Background(),
